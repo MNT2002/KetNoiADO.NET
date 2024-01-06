@@ -37,11 +37,13 @@ namespace KetNoiADO.NET
             this.VD_2 = new System.Windows.Forms.Button();
             this.VD_1 = new System.Windows.Forms.Button();
             this.panel_ChucNang = new System.Windows.Forms.Panel();
+            this.log_out_btn = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.log_out_btn);
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Controls.Add(this.VD_4);
@@ -56,13 +58,12 @@ namespace KetNoiADO.NET
             this.groupBox1.Size = new System.Drawing.Size(948, 116);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Ví dụ";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
             this.label2.BackColor = System.Drawing.SystemColors.ScrollBar;
-            this.label2.Location = new System.Drawing.Point(680, 0);
+            this.label2.Location = new System.Drawing.Point(2, 2);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(89, 25);
             this.label2.TabIndex = 5;
@@ -73,7 +74,7 @@ namespace KetNoiADO.NET
             // 
             this.label1.AutoSize = true;
             this.label1.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
-            this.label1.Location = new System.Drawing.Point(772, 0);
+            this.label1.Location = new System.Drawing.Point(94, 2);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(99, 25);
             this.label1.TabIndex = 4;
@@ -134,6 +135,17 @@ namespace KetNoiADO.NET
             this.panel_ChucNang.TabIndex = 1;
             this.panel_ChucNang.Paint += new System.Windows.Forms.PaintEventHandler(this.panel_ChucNang_Paint);
             // 
+            // log_out_btn
+            // 
+            this.log_out_btn.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.log_out_btn.Location = new System.Drawing.Point(829, 3);
+            this.log_out_btn.Name = "log_out_btn";
+            this.log_out_btn.Size = new System.Drawing.Size(113, 33);
+            this.log_out_btn.TabIndex = 6;
+            this.log_out_btn.Text = "Đăng xuất";
+            this.log_out_btn.UseVisualStyleBackColor = false;
+            this.log_out_btn.MouseClick += new System.Windows.Forms.MouseEventHandler(this.log_out_btn_MouseClick);
+            // 
             // frm_Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
@@ -164,5 +176,6 @@ namespace KetNoiADO.NET
         private System.Windows.Forms.Button VD_4;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button log_out_btn;
     }
 }

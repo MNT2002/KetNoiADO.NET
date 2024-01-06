@@ -62,6 +62,7 @@ namespace KetNoiADO.NET.ChucNang
             LoadGrid();
         }
 
+        //Hàm kiểm tra username đã tồn tại hay chưa
         private bool IsUsernameExist(string username)
         {
             clConnect cl = new clConnect();
@@ -150,7 +151,7 @@ namespace KetNoiADO.NET.ChucNang
             }
             else
             {
-                MessageBox.Show("Xóa nhân viên thất bại", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Xóa nhân viên thất bại, không tìm thấy ID nhân viên!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -198,7 +199,7 @@ namespace KetNoiADO.NET.ChucNang
             //dataAdapter.Update(dataSet, "NhanVien");
             //LoadGrid();
 
-            if (username_current != txt_Username_Sua.Text) 
+            if (username_current != txt_Username_Sua.Text) //Kiểm tra username có thay đổi so với mặc định hay ko
             {
                 if (IsUsernameExist(txt_Username_Sua.Text))
                 {

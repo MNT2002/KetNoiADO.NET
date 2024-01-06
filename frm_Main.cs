@@ -80,5 +80,11 @@ namespace KetNoiADO.NET
             System.Windows.Forms.Application.Exit();
         }
 
+        private void log_out_btn_MouseClick(object sender, MouseEventArgs e)
+        {
+            this.Hide();
+            frm_Login frmLogin = new frm_Login();
+            frmLogin.ShowDialog();
+        }
     }
 }
