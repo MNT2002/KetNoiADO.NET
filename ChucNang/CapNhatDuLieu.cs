@@ -65,12 +65,38 @@ namespace KetNoiADO.NET.ChucNang
         //Hàm kiểm tra username đã tồn tại hay chưa
         private bool IsUsernameExist(string username)
         {
-            clConnect cl = new clConnect();
-            string sql = "SELECT * FROM NhanVien WHERE Username = @Username";
-            string[] name = { "@Username" }; object[] values = { username };
+            //clConnect cl = new clConnect();
+            //string sql = "SELECT * FROM NhanVien WHERE Username = @Username";
+            //string[] name = { "@Username" }; object[] values = { username };
 
-            DataTable countTable = cl.LoadData(sql, name, values, 1);
-            return countTable.Rows.Count > 0; //True nếu truy vấn thành công <=> countTable = 1
+            //DataTable countTable = cl.LoadData(sql, name, values, 1);
+            //return countTable.Rows.Count > 0; //True nếu truy vấn thành công <=> countTable = 1
+
+            foreach (DataGridViewRow row in dgv_NhanVien.Rows)
+            {
+                if (row.Cells["Username"].Value.ToString() == username)
+                {
+                    return true;
+                }
+            }
+             return false;
+        }
+
+        private void resetText()
+        {
+            txt_HoTen.Clear();
+            txt_DiaChi.Clear();
+            txt_Username.Clear();
+            txt_Password.Clear();
+            comboBox_Quyen.SelectedIndex = 0;
+            txt_ID_Sua.Clear();
+            txt_HoTen_Sua.Clear();
+            txt_DiaChi_Sua.Clear();
+            txt_Username_Sua.Clear();  
+            txt_Password_Sua.Clear();
+            comboBox_Quyen_Sua.SelectedIndex = 0;
+            txt_ID_Xoa.Clear();
+
         }
 
         private void btn_Them_Click(object sender, EventArgs e)
@@ -92,7 +118,7 @@ namespace KetNoiADO.NET.ChucNang
 
             if (IsUsernameExist(txt_Username.Text))
             {
-                MessageBox.Show("Username đã tồn tại. Vui lòng chọn username khác.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Username đã tồn tại. Vui lòng chọn username khác.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
@@ -109,6 +135,7 @@ namespace KetNoiADO.NET.ChucNang
             if (cl.UpdateData(sql, name, value, m_Prm) > 0)
             {
                 MessageBox.Show("Thêm nhân viên thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                resetText();
                 LoadGrid();
             }
             else
@@ -137,22 +164,29 @@ namespace KetNoiADO.NET.ChucNang
             //}
 
             //LoadGrid();
+            if (MessageBox.Show("Bạn có muốn xóa nhân viên " + txt_HoTen_Sua.Text, "Thông báo", 
+                MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) == DialogResult.Yes)
+            {
+                clConnect cl = new clConnect();
+                string sql = "DELETE NhanVien where ID = @IDNhanVien";
+                int n_prm = 1;
+                string[] name = new string[n_prm];
+                object[] value = new object[n_prm];
+                name[0] = "@IDNhanVien"; value[0] = txt_ID_Xoa.Text;
+                if (cl.UpdateData(sql, name, value, n_prm) > 0)
+                {
+                    MessageBox.Show("Xóa nhân viên thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    LoadGrid();
+                }
+                else
+                {
+                    MessageBox.Show("Xóa nhân viên thất bại, không tìm thấy ID nhân viên!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            } else
+            {
+                return;
+            }
 
-            clConnect cl = new clConnect();
-            string sql = "DELETE NhanVien where ID = @IDNhanVien";
-            int n_prm = 1;
-            string[] name = new string[n_prm];
-            object[] value = new object[n_prm];
-            name[0] = "@IDNhanVien"; value[0] = txt_ID_Xoa.Text;
-            if (cl.UpdateData(sql, name, value, n_prm) > 0)
-            {
-                MessageBox.Show("Xóa nhân viên thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                LoadGrid();
-            }
-            else
-            {
-                MessageBox.Show("Xóa nhân viên thất bại, không tìm thấy ID nhân viên!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
         }
 
         private void dgv_NhanVien_RowHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
@@ -203,31 +237,35 @@ namespace KetNoiADO.NET.ChucNang
             {
                 if (IsUsernameExist(txt_Username_Sua.Text))
                 {
-                    MessageBox.Show("Username đã tồn tại. Vui lòng chọn username khác.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show("Username đã tồn tại. Vui lòng chọn username khác.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
             }
-
-
-            clConnect cl = new clConnect();
-            string sql = "UPDATE NhanVien SET HoTen=@HoTen,DiaChi=@DiaChi,Username=@Username,Password=@Password,Quyen=@Quyen WHERE ID = @IDNhanVien";
-            int n_prm = 6;
-            string[] name = new string[n_prm];
-            object[] value = new object[n_prm];
-            name[0] = "@IDNhanVien"; value[0] = txt_ID_Sua.Text;
-            name[1] = "@HoTen"; value[1] = txt_HoTen_Sua.Text;
-            name[2] = "@DiaChi"; value[2] = txt_DiaChi_Sua.Text;
-            name[3] = "@Username"; value[3] = txt_Username_Sua.Text;
-            name[4] = "@Password"; value[4] = txt_Password_Sua.Text;
-            name[5] = "@Quyen"; value[5] = comboBox_Quyen_Sua.SelectedItem;
-            if (cl.UpdateData(sql, name, value, n_prm) > 0)
+            string tenNV = dgv_NhanVien.SelectedRows[0].Cells["HoTen"].Value.ToString();
+            if (MessageBox.Show("Bạn có muốn sửa nhân viên " + tenNV, "Thông báo",
+                MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) == DialogResult.Yes)
             {
-                MessageBox.Show("Sửa nhân viên thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                LoadGrid();
-            }
-            else
-            {
-                MessageBox.Show("Sửa nhân viên thất bại", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                clConnect cl = new clConnect();
+                string sql = "UPDATE NhanVien SET HoTen=@HoTen,DiaChi=@DiaChi,Username=@Username,Password=@Password,Quyen=@Quyen WHERE ID = @IDNhanVien";
+                int n_prm = 6;
+                string[] name = new string[n_prm];
+                object[] value = new object[n_prm];
+                name[0] = "@IDNhanVien"; value[0] = txt_ID_Sua.Text;
+                name[1] = "@HoTen"; value[1] = txt_HoTen_Sua.Text;
+                name[2] = "@DiaChi"; value[2] = txt_DiaChi_Sua.Text;
+                name[3] = "@Username"; value[3] = txt_Username_Sua.Text;
+                name[4] = "@Password"; value[4] = txt_Password_Sua.Text;
+                name[5] = "@Quyen"; value[5] = comboBox_Quyen_Sua.SelectedItem;
+                if (cl.UpdateData(sql, name, value, n_prm) > 0)
+                {
+                    MessageBox.Show("Sửa nhân viên thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    resetText();
+                    LoadGrid();
+                }
+                else
+                {
+                    MessageBox.Show("Sửa nhân viên thất bại", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
         }
 
