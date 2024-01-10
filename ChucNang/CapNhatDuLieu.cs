@@ -121,6 +121,11 @@ namespace KetNoiADO.NET.ChucNang
                 MessageBox.Show("Username đã tồn tại. Vui lòng chọn username khác.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
+            if (txt_HoTen.Text == "" || txt_DiaChi.Text == "" || txt_Username.Text == "" || txt_Password.Text == "")
+            {
+                MessageBox.Show("Vui lòng nhập đẩy các trường!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
 
             clConnect cl = new clConnect();
             int m_Prm = 5;
@@ -238,6 +243,11 @@ namespace KetNoiADO.NET.ChucNang
                 if (IsUsernameExist(txt_Username_Sua.Text))
                 {
                     MessageBox.Show("Username đã tồn tại. Vui lòng chọn username khác.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+                if (txt_HoTen_Sua.Text == "" || txt_DiaChi_Sua.Text == "" || txt_Username_Sua.Text == "" || txt_Password_Sua.Text == "")
+                {
+                    MessageBox.Show("Vui lòng nhập đẩy các trường!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
             }

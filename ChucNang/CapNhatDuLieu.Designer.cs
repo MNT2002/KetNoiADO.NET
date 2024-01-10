@@ -31,6 +31,7 @@ namespace KetNoiADO.NET.ChucNang
         {
             this.dgv_NhanVien = new System.Windows.Forms.DataGridView();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.comboBox_Quyen = new System.Windows.Forms.ComboBox();
             this.btn_Them = new System.Windows.Forms.Button();
             this.txt_Password = new System.Windows.Forms.TextBox();
             this.txt_Username = new System.Windows.Forms.TextBox();
@@ -46,20 +47,19 @@ namespace KetNoiADO.NET.ChucNang
             this.txt_ID_Xoa = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.comboBox_Quyen_Sua = new System.Windows.Forms.ComboBox();
             this.btn_Sua = new System.Windows.Forms.Button();
             this.txt_DiaChi_Sua = new System.Windows.Forms.TextBox();
+            this.label13 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.txt_Password_Sua = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
             this.txt_Username_Sua = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
+            this.txt_ID_Sua = new System.Windows.Forms.TextBox();
             this.txt_HoTen_Sua = new System.Windows.Forms.TextBox();
             this.label11 = new System.Windows.Forms.Label();
-            this.txt_ID_Sua = new System.Windows.Forms.TextBox();
-            this.label13 = new System.Windows.Forms.Label();
-            this.comboBox_Quyen = new System.Windows.Forms.ComboBox();
-            this.comboBox_Quyen_Sua = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_NhanVien)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -102,6 +102,15 @@ namespace KetNoiADO.NET.ChucNang
             this.groupBox1.TabIndex = 1;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Thêm";
+            // 
+            // comboBox_Quyen
+            // 
+            this.comboBox_Quyen.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox_Quyen.FormattingEnabled = true;
+            this.comboBox_Quyen.Location = new System.Drawing.Point(116, 156);
+            this.comboBox_Quyen.Name = "comboBox_Quyen";
+            this.comboBox_Quyen.Size = new System.Drawing.Size(177, 34);
+            this.comboBox_Quyen.TabIndex = 6;
             // 
             // btn_Them
             // 
@@ -212,6 +221,7 @@ namespace KetNoiADO.NET.ChucNang
             // 
             this.txt_ID_Xoa.Location = new System.Drawing.Point(136, 32);
             this.txt_ID_Xoa.Name = "txt_ID_Xoa";
+            this.txt_ID_Xoa.ReadOnly = true;
             this.txt_ID_Xoa.Size = new System.Drawing.Size(100, 32);
             this.txt_ID_Xoa.TabIndex = 1;
             this.txt_ID_Xoa.TextChanged += new System.EventHandler(this.txt_Xoa_TextChanged);
@@ -247,6 +257,15 @@ namespace KetNoiADO.NET.ChucNang
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Sửa";
             // 
+            // comboBox_Quyen_Sua
+            // 
+            this.comboBox_Quyen_Sua.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox_Quyen_Sua.FormattingEnabled = true;
+            this.comboBox_Quyen_Sua.Location = new System.Drawing.Point(114, 191);
+            this.comboBox_Quyen_Sua.Name = "comboBox_Quyen_Sua";
+            this.comboBox_Quyen_Sua.Size = new System.Drawing.Size(177, 34);
+            this.comboBox_Quyen_Sua.TabIndex = 6;
+            // 
             // btn_Sua
             // 
             this.btn_Sua.Location = new System.Drawing.Point(69, 248);
@@ -263,6 +282,16 @@ namespace KetNoiADO.NET.ChucNang
             this.txt_DiaChi_Sua.Name = "txt_DiaChi_Sua";
             this.txt_DiaChi_Sua.Size = new System.Drawing.Size(177, 32);
             this.txt_DiaChi_Sua.TabIndex = 1;
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Location = new System.Drawing.Point(2, 35);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(34, 26);
+            this.label13.TabIndex = 0;
+            this.label13.Text = "ID";
+            this.label13.Click += new System.EventHandler(this.label13_Click);
             // 
             // label7
             // 
@@ -314,6 +343,14 @@ namespace KetNoiADO.NET.ChucNang
             this.label10.TabIndex = 0;
             this.label10.Text = "Password:";
             // 
+            // txt_ID_Sua
+            // 
+            this.txt_ID_Sua.Location = new System.Drawing.Point(114, 31);
+            this.txt_ID_Sua.Name = "txt_ID_Sua";
+            this.txt_ID_Sua.ReadOnly = true;
+            this.txt_ID_Sua.Size = new System.Drawing.Size(177, 32);
+            this.txt_ID_Sua.TabIndex = 0;
+            // 
             // txt_HoTen_Sua
             // 
             this.txt_HoTen_Sua.Location = new System.Drawing.Point(114, 62);
@@ -329,42 +366,6 @@ namespace KetNoiADO.NET.ChucNang
             this.label11.Size = new System.Drawing.Size(82, 26);
             this.label11.TabIndex = 2;
             this.label11.Text = "Quyền:";
-            // 
-            // txt_ID_Sua
-            // 
-            this.txt_ID_Sua.Location = new System.Drawing.Point(114, 31);
-            this.txt_ID_Sua.Name = "txt_ID_Sua";
-            this.txt_ID_Sua.ReadOnly = true;
-            this.txt_ID_Sua.Size = new System.Drawing.Size(177, 32);
-            this.txt_ID_Sua.TabIndex = 0;
-            // 
-            // label13
-            // 
-            this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(2, 35);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(34, 26);
-            this.label13.TabIndex = 0;
-            this.label13.Text = "ID";
-            this.label13.Click += new System.EventHandler(this.label13_Click);
-            // 
-            // comboBox_Quyen
-            // 
-            this.comboBox_Quyen.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox_Quyen.FormattingEnabled = true;
-            this.comboBox_Quyen.Location = new System.Drawing.Point(116, 156);
-            this.comboBox_Quyen.Name = "comboBox_Quyen";
-            this.comboBox_Quyen.Size = new System.Drawing.Size(177, 34);
-            this.comboBox_Quyen.TabIndex = 6;
-            // 
-            // comboBox_Quyen_Sua
-            // 
-            this.comboBox_Quyen_Sua.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox_Quyen_Sua.FormattingEnabled = true;
-            this.comboBox_Quyen_Sua.Location = new System.Drawing.Point(114, 191);
-            this.comboBox_Quyen_Sua.Name = "comboBox_Quyen_Sua";
-            this.comboBox_Quyen_Sua.Size = new System.Drawing.Size(177, 34);
-            this.comboBox_Quyen_Sua.TabIndex = 6;
             // 
             // CapNhatDuLieu
             // 
